@@ -3,7 +3,11 @@ import java.util.concurrent.TimeUnit;
 
 public class LRUCache {
 
-    public static void main(String[] args) {
+    MockDataBase db = new MockDataBase();
 
+
+    public LRUCache(int roll ) throws InterruptedException {
+        HashMap<Integer,Student> mb = new HashMap<>();
+        mb.put(roll,s);
     }
 }
