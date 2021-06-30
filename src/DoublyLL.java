@@ -31,12 +31,35 @@ public class DoublyLL {
                 return head;
             }
     }
-    public static void printDLL(Node head) {
+    public static Node deleteNodeAndAddFront(Node head, int data) {
             Node current = head;
-            while(current != null) {
-                System.out.println(current.data);
-                current = current.next;
+            Node current1 = null;
+            if (head == null) {
+                return null;
+            } else {
+                while (current.next.data != data) {
+                    current = current.next;
+                }
+                current1 = current.next;
+                current.next = current.next.next;
             }
+
+            head = insertAtFront(head,current1.data);
+
+            return head;
+
+    }
+    public static void printDLL(Node head) {
+            if (head == null) {
+                System.out.println("Doubly linked list doesn't exists");
+            } else {
+                Node current = head;
+                while (current != null) {
+                    System.out.print(current.data + " ");
+                    current = current.next;
+                }
+            }
+            System.out.println();
     }
     public static void main(String[] args) {
         Node head = null;
@@ -47,7 +70,9 @@ public class DoublyLL {
         head =  insertAtFront(head,8);
         head =  insertAtFront(head,100);
         printDLL(head);
-
+        head = deleteNodeAndAddFront(head,9);
+        printDLL(head);
+      // System.out.println(deleteNodeAndAddFront(head,9).data);
     }
 
 
