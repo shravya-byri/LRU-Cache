@@ -1,6 +1,7 @@
 import java.util.HashMap;
 
 public class Cache {
+
     HashMap<Integer,Student> data1 = new HashMap<>();
 
     public Student fetchFromCache(int roll ) throws InterruptedException {
