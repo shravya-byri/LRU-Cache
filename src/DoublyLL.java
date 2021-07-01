@@ -31,6 +31,17 @@ public class DoublyLL {
                 return head;
             }
     }
+    public static Node deleteNodeAndAddFrontWhenNodeAvailable(Node head, Node deleteNode) {
+            if (deleteNode.prev == null) return deleteNode.next;
+            else {
+                Node prev = deleteNode.prev;
+                prev.next = prev.next.next;
+                head.prev = deleteNode;
+                deleteNode.next = head;
+                return deleteNode;
+            }
+
+    }
     public static Node deleteNodeAndAddFront(Node head, int data) {
             Node current = head;
             Node current1 = null;
