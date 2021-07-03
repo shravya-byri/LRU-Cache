@@ -2,7 +2,7 @@ public class MockAPI {
     MockDataBase db = new MockDataBase();
     Cache c = new Cache();
    public Student fetchStudentDetails(int roll) throws InterruptedException {
-       Student result = c.fetchFromCache(roll);
+       Student result = c.getFromCache(roll);
        if (result != null ) {
            System.out.println("Cache Hit: " + roll);
        } else {

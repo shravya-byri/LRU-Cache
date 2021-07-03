@@ -4,6 +4,5 @@ public class Application {
         api.fetchStudentDetails(2).printDetails();
         api.fetchStudentDetails(1).printDetails();
         api.fetchStudentDetails(2).printDetails();
-
     }
 }

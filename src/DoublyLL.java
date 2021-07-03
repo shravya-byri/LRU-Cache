@@ -1,16 +1,18 @@
+import java.util.HashMap;
+
 public class DoublyLL {
 
         public static class Node{
-           int data;
+           Student student;
            Node next;
            Node prev;
-         public Node(int r, Node p, Node n) {
-            data = r;
+         public Node(Student r, Node p, Node n) {
+            student = r;
             prev = p;
             next = n;
             }
     }
-    public static Node insertAtBack(Node head, int data) {
+    public static Node insertAtBack(Node head, Student data) {
             Node current1 = head;
             if (head == null)
                 return new Node(data,null,null);
@@ -23,39 +25,39 @@ public class DoublyLL {
             }
 
     }
-    public static Node insertAtFront(Node head, int data){
-            if (head == null) return new Node(data,null,null);
+    public static Node insertAtFront(Node head, Student studentData){
+            if (head == null) return new Node(studentData,null,null);
             else {
                 Node current2 = head;
-                head = new Node(data, null, current2);
+                head = new Node(studentData, null, current2);
                 return head;
             }
     }
     public static Node deleteNodeAndAddFrontWhenNodeAvailable(Node head, Node deleteNode) {
-            if (deleteNode.prev == null) return deleteNode.next;
-            else {
+            if (deleteNode.prev == null) {
+                return head;
+            } else {
                 Node prev = deleteNode.prev;
                 prev.next = prev.next.next;
-                head.prev = deleteNode;
-                deleteNode.next = head;
-                return deleteNode;
+                prev.next.prev = prev;
+                return insertAtFront(head, deleteNode.student);
             }
 
     }
-    public static Node deleteNodeAndAddFront(Node head, int data) {
+    public static Node deleteNodeAndAddFront(Node head, Student data) {
             Node current = head;
             Node current1 = null;
             if (head == null) {
                 return null;
             } else {
-                while (current.next.data != data) {
+                while (current.next.student != data) {
                     current = current.next;
                 }
                 current1 = current.next;
                 current.next = current.next.next;
             }
 
-            head = insertAtFront(head,current1.data);
+            head = insertAtFront(head,current1.student);
 
             return head;
 
@@ -66,23 +68,22 @@ public class DoublyLL {
             } else {
                 Node current = head;
                 while (current != null) {
-                    System.out.print(current.data + " ");
+                    System.out.print(current.student.name + " "+ current.student.roll+ " " + current.student.marks);
+                    System.out.println();
                     current = current.next;
                 }
             }
-            System.out.println();
+
     }
     public static void main(String[] args) {
         Node head = null;
-        head = insertAtBack(head,2);
-        head =  insertAtBack(head,3);
-        head = insertAtBack(head,9);
-        head =  insertAtBack(head,4);
-        head =  insertAtFront(head,8);
-        head =  insertAtFront(head,100);
+        MockDataBase db = new MockDataBase();
+        HashMap<Integer, Student> hm = db.data;
+        head =  insertAtBack(null, hm.get(1));
+        head =  insertAtBack(head, hm.get(3));
         printDLL(head);
-        head = deleteNodeAndAddFront(head,9);
-        printDLL(head);
+       // head = deleteNodeAndAddFrontWhenNodeAvailable(head,hm.get(1));
+        //printDLL(head);
       // System.out.println(deleteNodeAndAddFront(head,9).data);
     }
 
