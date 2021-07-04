@@ -18,7 +18,7 @@ public class MockDataBase {
 
     public Student fetchFromDb(int roll) throws InterruptedException {
         System.out.println("Waiting for db...");
-        Thread.sleep(3000);
+        Thread.sleep(500);
         System.out.println("Fetched from db: " + roll);
         return data.get(roll);
     }
